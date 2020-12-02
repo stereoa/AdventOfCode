@@ -9,77 +9,54 @@ namespace AdventOfCode.Solutions.Year2020
 
     class Day01 : ASolution
     {
+        public const int GOAL = 2020;
+        public const string NO_MATCH_MESSAGE = "No match found!";
+
+        public int[] Expenses { get; }
 
         public Day01() : base(01, 2020, "")
         {
-
+            Expenses = Input.Split("\n").Select(l => int.Parse(l)).ToArray();
         }
+
 
         protected override string SolvePartOne()
         {
-            var goal = 2020;
-            var lines = Input.Split("\n");
-            var firstNumber = 0;
-            var secondNumber = 0;
-            var numbers = lines.Select(l => int.Parse(l)).ToArray();
-            var keepGoing = true;
-            for (var i = 0; i < numbers.Count() - 2; i++)
+            for (var i = 0; i < Expenses.Count() - 2; i++)
             {
-                firstNumber = numbers[i];
-                for (var j = i + 1; j < numbers.Count() - 1; j++)
+                var firstNumber = Expenses[i];
+                for (var j = i + 1; j < Expenses.Count() - 1; j++)
                 {
-                    secondNumber = numbers[j];
-                    if (firstNumber + secondNumber == goal)
+                    var secondNumber = Expenses[j];
+                    if (firstNumber + secondNumber == GOAL)
                     {
-                        keepGoing = false;
-                        break;
+                        return (firstNumber * secondNumber).ToString();
                     }
                 }
-                if (!keepGoing)
-                {
-                    break;
-                }
             }
-            return (firstNumber * secondNumber).ToString();
+            return NO_MATCH_MESSAGE;
         }
 
         protected override string SolvePartTwo()
         {
-            var goal = 2020;
-            var lines = Input.Split("\n");
-            var firstNumber = 0;
-            var secondNumber = 0;
-            var thirdNumber = 0;
-            var numbers = lines.Select(l => int.Parse(l)).ToArray();
-            var keepGoing = true;
-            for (var i = 0; i < numbers.Count() - 3; i++)
+            for (var i = 0; i < Expenses.Count() - 3; i++)
             {
-                firstNumber = numbers[i];
-                for (var j = i + 1; j < numbers.Count() - 2; j++)
+                var firstNumber = Expenses[i];
+                for (var j = i + 1; j < Expenses.Count() - 2; j++)
                 {
-                    secondNumber = numbers[j];
-                    for (var k = j + 1; k < numbers.Count() - 1; k++)
+                    var secondNumber = Expenses[j];
+                    for (var k = j + 1; k < Expenses.Count() - 1; k++)
                     {
-                        thirdNumber = numbers[k];
+                        var thirdNumber = Expenses[k];
 
-                        if (firstNumber + secondNumber + thirdNumber == goal)
+                        if (firstNumber + secondNumber + thirdNumber == GOAL)
                         {
-                            keepGoing = false;
-                            break;
+                            return (firstNumber * secondNumber * thirdNumber).ToString();
                         }
                     }
-                    if (!keepGoing)
-                    {
-                        break;
-                    }
-                }
-                if (!keepGoing)
-                {
-                    break;
                 }
             }
-
-            return (firstNumber * secondNumber * thirdNumber).ToString();
+            return NO_MATCH_MESSAGE;
         }
     }
 }

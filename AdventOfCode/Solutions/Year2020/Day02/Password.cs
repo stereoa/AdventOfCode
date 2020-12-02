@@ -8,14 +8,6 @@ namespace AdventOfCode.Solutions.Year2020
 {
     public class Password
     {
-        public Password(int min, int max, char character, string content)
-        {
-            Min = min;
-            Max = max;
-            Character = character;
-            Content = content;
-        }
-
         public int Min { get; set; }
         public int Max { get; set; }
         public char Character { get; set; }

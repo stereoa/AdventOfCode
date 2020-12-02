@@ -1,70 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Solutions.Year2020
 {
 
     class Day02 : ASolution
     {
+        public IEnumerable<Password> Passwords { get; }
 
         public Day02() : base(02, 2020, "")
         {
-
+            Passwords = ParsePasswords(Input);
         }
 
         protected override string SolvePartOne()
         {
-            var lines = Input.Split("\n");
-            var count = 0;
-
-            foreach(var line in lines)
-            {
-                var password = ParsePassword(line);
-
-                if(password.IsValidCharCount)
-                {
-                    count++;
-                }
-
-            }
-
-            return count.ToString();
+            return Passwords.Count(p => p.IsValidCharCount).ToString();
         }
 
         protected override string SolvePartTwo()
         {
-            var lines = Input.Split("\n");
-            var count = 0;
-
-            foreach (var line in lines)
-            {
-                var password = ParsePassword(line);
-
-                if (password.IsValidCharPositioning)
-                {
-                    count++;
-                }
-
-            }
-
-            return count.ToString();
+            return Passwords.Count(p => p.IsValidCharPositioning).ToString();
         }
 
-        private Password ParsePassword(string line)
+        private IEnumerable<Password> ParsePasswords(string input)
         {
-            var sections = line.Split(" ");
-
-            var range = sections[0].Split("-");
-            var min = int.Parse(range[0]);
-            var max = int.Parse(range[1]);
-
-            var character = sections[1].Replace(":", "")[0];
-
-            var content = sections[2];
-
-            return new Password(min, max, character, content);
+            var regex = new Regex(@"(\d+)-(\d+) (.+): (.+)");
+            return regex.Matches(input).Select(m => new Password
+            {
+                Min = int.Parse(m.Groups[1].Value),
+                Max = int.Parse(m.Groups[2].Value),
+                Character = m.Groups[3].Value[0],
+                Content = m.Groups[4].Value
+            });
         }
-
     }
 }

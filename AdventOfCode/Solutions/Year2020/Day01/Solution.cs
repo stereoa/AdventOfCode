@@ -9,7 +9,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         public ExpenseReport Report { get; set; }
 
-        public Day01() : base(01, 2020, "")
+        public Day01() : base(01, 2020, "Report Repair")
         {
             Report = new ExpenseReport(Input.ToIntArray("\n"), GOAL);
         }

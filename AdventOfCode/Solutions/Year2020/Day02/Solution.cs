@@ -9,7 +9,7 @@ namespace AdventOfCode.Solutions.Year2020
     {
         public IEnumerable<Password> Passwords { get; }
 
-        public Day02() : base(02, 2020, "")
+        public Day02() : base(02, 2020, "Password Philosophy")
         {
             Passwords = PasswordParser.Parse(Input);
         }

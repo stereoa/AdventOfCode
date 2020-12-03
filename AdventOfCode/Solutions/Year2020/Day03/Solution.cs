@@ -8,7 +8,7 @@ namespace AdventOfCode.Solutions.Year2020
     {
         public Map Map { get; }
 
-        public Day03() : base(03, 2020, "")
+        public Day03() : base(03, 2020, "Toboggan Trajectory")
         {
             Map = new Map(Input);
         }

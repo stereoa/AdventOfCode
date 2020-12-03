@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Models
 {
-    internal class Slope
+    public class Slope
     {
         public int X { get; }
         public int Y { get; }

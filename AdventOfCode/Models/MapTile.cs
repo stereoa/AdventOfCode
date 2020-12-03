@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Models
 {
-    internal class MapTile
+    public abstract class MapTile
     {
     }
 }

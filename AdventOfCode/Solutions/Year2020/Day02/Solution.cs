@@ -1,7 +1,6 @@
-using System;
+using AdventOfCode.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Solutions.Year2020

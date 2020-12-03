@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Solutions.Year2020
+﻿namespace AdventOfCode.Models
 {
     internal class Slope
     {

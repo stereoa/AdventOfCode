@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace AdventOfCode.Solutions.Year2020
 {
@@ -16,7 +12,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         public Day01() : base(01, 2020, "")
         {
-            Expenses = Input.Split("\n").Select(l => int.Parse(l)).ToArray();
+            Expenses = Input.SplitByNewline().Select(l => int.Parse(l)).ToArray();
         }
 
 

@@ -6,3 +6,4 @@ Solutions in C#.
 
 [1: Report Repair](https://github.com/stereoa/AdventOfCode/blob/master/AdventOfCode/Solutions/Year2020/Day01/Solution.cs)
 [2: Password Philosophy](https://github.com/stereoa/AdventOfCode/blob/master/AdventOfCode/Solutions/Year2020/Day02/Solution.cs)
+[3: Toboggan Trajectory](https://github.com/stereoa/AdventOfCode/blob/master/AdventOfCode/Solutions/Year2020/Day03/Solution.cs)

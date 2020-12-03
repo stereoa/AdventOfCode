@@ -3,16 +3,16 @@ using System.Linq;
 namespace AdventOfCode.Solutions.Year2020
 {
 
-    class Day01 : ASolution
+    public class Day01 : ASolution
     {
         public const int GOAL = 2020;
         public const string NO_MATCH_MESSAGE = "No match found!";
 
-        public int[] Expenses { get; }
+        public int[] Expenses { get; set; }
 
         public Day01() : base(01, 2020, "")
         {
-            Expenses = Input.SplitByNewline().Select(l => int.Parse(l)).ToArray();
+            Expenses = Input.ToIntArray();
         }
 
 

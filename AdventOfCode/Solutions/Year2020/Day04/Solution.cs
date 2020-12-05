@@ -1,3 +1,7 @@
+using AdventOfCode.Models;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace AdventOfCode.Solutions.Year2020
 {
 
@@ -6,17 +10,19 @@ namespace AdventOfCode.Solutions.Year2020
 
         public Day04() : base(04, 2020, "")
         {
-
+            Passports = PassportParser.Parse(Input);
         }
+
+        public IEnumerable<Passport> Passports { get; }
 
         protected override string SolvePartOne()
         {
-            return null;
+            return Passports.Count(p => p.HasValidFields).ToString();
         }
 
         protected override string SolvePartTwo()
         {
-            return null;
+            return Passports.Count(p => p.HasValidData && p.HasValidFields).ToString();
         }
     }
 }

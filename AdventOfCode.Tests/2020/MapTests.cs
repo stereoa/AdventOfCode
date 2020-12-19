@@ -1,7 +1,7 @@
 ﻿using AdventOfCode.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdventOfCode.Tests._2020
+namespace AdventOfCode.Tests
 {
     [TestClass]
     public class MapTests

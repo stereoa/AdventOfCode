@@ -1,5 +1,6 @@
 ﻿using AdventOfCode.Solutions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode.Models
 {
@@ -18,13 +19,13 @@ namespace AdventOfCode.Models
         {
             get
             {
-                for (var i = PreambleLength; i < Data.Length - PreambleLength; i++)
+                for (var i = PreambleLength; i < Data.Length; i++)
                 {
                     var targetFound = false;
                     var currentTarget = Data[i];
-                    for (var j = i - PreambleLength; j < Data.Length - PreambleLength; j++)
+                    for (var j = i - PreambleLength; j < i; j++)
                     {
-                        for (var k = j + 1; k < j + PreambleLength; k++)
+                        for (var k = j + 1; k < i; k++)
                         {
                             if (Data[j] + Data[k] == currentTarget)
                             {
@@ -37,7 +38,7 @@ namespace AdventOfCode.Models
                         }
                         if (targetFound)
                         {
-                            continue;
+                            break;
                         }
                     }
 
@@ -50,5 +51,39 @@ namespace AdventOfCode.Models
             }
 
         }
+
+        public int Weakness
+        {
+            get
+            {
+                var weakpoint = Weakpoint;
+                var attackRange = Data.Where(d => d < weakpoint).ToArray();
+
+                for (var i = 0; i < attackRange.Length - 2; i++)
+                {
+                    var sum = attackRange[i];
+                    for (var j = i + 1; j < attackRange.Length - 1; j++)
+                    {
+                        sum += attackRange[j];
+                        if (sum < weakpoint)
+                        {
+                            continue;
+                        }
+                        if (sum == weakpoint)
+                        {
+                            var range = attackRange[i..j];
+
+                            return range.Min() + range.Max();
+                        }
+                        if (sum > weakpoint)
+                        {
+                            break;
+                        }
+                    }
+                }
+                return 0;
+            }
+        }
+
     }
 }

@@ -1,3 +1,5 @@
+using AdventOfCode.Models;
+
 namespace AdventOfCode.Solutions.Year2020
 {
 
@@ -11,7 +13,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         protected override string SolvePartOne()
         {
-            return null;
+            return new XmasEncryption(Input, 5).Weakpoint.ToString();
         }
 
         protected override string SolvePartTwo()

@@ -13,7 +13,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         protected override string SolvePartOne()
         {
-            return new XmasEncryption(Input, 5).Weakpoint.ToString();
+            return new XmasEncryption(Input, 25).Weakpoint.ToString();
         }
 
         protected override string SolvePartTwo()

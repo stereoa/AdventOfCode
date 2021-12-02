@@ -32,50 +32,49 @@ namespace AdventOfCode.Tests
         [TestMethod]
         public void Test_Day19PartOneExample()
         {
-            var data = _input.Split("\n\n");
-            _rules = data[0].SplitByNewline().Select(d => new MonsterMessageRule(d)).OrderBy(d => d.Index).ToList();
-            _messages = data[1].SplitByNewline();
+            //var data = _input.Split("\n\n");
+            //_rules = data[0].SplitByNewline().Select(d => new MonsterMessageRule(d)).OrderBy(d => d.Index).ToList();
+            //_messages = data[1].SplitByNewline();
 
-            var populated = _rules.Where(r => r.CharacterSets.Any());
-            var unpopulatedRules = _rules.Where(r => !r.CharacterSets.Any());
+            //var populated = _rules.Where(r => r.CharacterSets.Any());
+            //var unpopulatedRules = _rules.Where(r => !r.CharacterSets.Any());
 
-            while (unpopulatedRules.Any())
-            {
-                foreach (var unpopulatedRule in unpopulatedRules)
-                {
-                    foreach (var ruleSet in unpopulatedRule.RuleSets)
-                    {
-                        var rules = populated.Where(r => ruleSet.Any(s => s == r.Index)).ToList();
-                        if (rules.Count() == ruleSet.Distinct().Count())
-                        {
-                            var charSet = string[][];
+            //while (unpopulatedRules.Any())
+            //{
+            //    foreach (var unpopulatedRule in unpopulatedRules)
+            //    {
+            //        foreach (var ruleSet in unpopulatedRule.RuleSets)
+            //        {
+            //            var rules = populated.Where(r => ruleSet.Any(s => s == r.Index)).ToList();
+            //            if (rules.Count() == ruleSet.Distinct().Count())
+            //            {
 
-                            foreach (var rule in ruleSet)
-                            {
-                                var charSets = rules.First(r => r.Index == rule).CharacterSets;
-                                foreach (var set in charSets)
-                                {
-                                    charSet += set;
-                                }
-                            }
-                            if (!unpopulatedRule.CharacterSets.Contains(charSet))
-                            {
-                                unpopulatedRule.CharacterSets.Add(charSet);
-                            }
-                        }
-                    }
-                }
+            //                foreach (var rule in ruleSet)
+            //                {
+            //                    var charSets = rules.First(r => r.Index == rule).CharacterSets;
+            //                    foreach (var set in charSets)
+            //                    {
+            //                        charSet += set;
+            //                    }
+            //                }
+            //                if (!unpopulatedRule.CharacterSets.Contains(charSet))
+            //                {
+            //                    unpopulatedRule.CharacterSets.Add(charSet);
+            //                }
+            //            }
+            //        }
+            //    }
 
-                unpopulatedRules = unpopulatedRules.Where(r => r.RuleSets.Any() &&
-                                                               r.CharacterSets.Count() != r.RuleSets.Count());
-                populated = _rules.Where(r => !unpopulatedRules.Any(u => u.Index == r.Index));
-            }
+            //    unpopulatedRules = unpopulatedRules.Where(r => r.RuleSets.Any() &&
+            //                                                   r.CharacterSets.Count() != r.RuleSets.Count());
+            //    populated = _rules.Where(r => !unpopulatedRules.Any(u => u.Index == r.Index));
+            //}
 
-            var firstRule = _rules.First();
+            //var firstRule = _rules.First();
 
 
-            var matchedMessages = _messages.Where(m => firstRule.CharacterSets.Any(v => v == m));
-            Assert.AreEqual(2, matchedMessages.Count());
+            //var matchedMessages = _messages.Where(m => firstRule.CharacterSets.Any(v => v == m));
+            //Assert.AreEqual(2, matchedMessages.Count());
         }
 
         [TestMethod]

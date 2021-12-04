@@ -3,7 +3,7 @@ using AdventOfCode.Models;
 namespace AdventOfCode.Solutions.Year2020
 {
 
-    public class Day01 : ASolution
+    class Day01 : ASolution
     {
         public const int GOAL = 2020;
 

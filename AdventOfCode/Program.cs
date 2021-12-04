@@ -1,21 +1,15 @@
-﻿using System;
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+
 using AdventOfCode.Infrastructure;
 using AdventOfCode.Infrastructure.Helpers;
-using AdventOfCode.Solutions;
 
-namespace AdventOfCode
+foreach (var solution in new SolutionCollector())
 {
-    class Program
+    Console.WriteLine();
+    foreach (var line in FormatHelper.FunctionFormat(solution))
     {
-        static SolutionCollector Solutions = new SolutionCollector();
-
-        static void Main(string[] args)
-        {
-            foreach (ASolution solution in Solutions)
-            {
-                Console.WriteLine();
-                Console.WriteLine(FormatHelper.FunctionFormat(solution));
-            }
-        }
+        Console.WriteLine(line);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 namespace AdventOfCode.Solutions.Year2021
 {
 
-    public class Day01 : ASolution
+    class Day01 : ASolution
     {
         public SonarSweep SonarSweep { get; set; }
 

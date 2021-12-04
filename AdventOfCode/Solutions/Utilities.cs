@@ -4,6 +4,7 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -95,15 +96,22 @@ namespace AdventOfCode.Solutions
             }
         }
 
-        public static string JoinAsStrings<T>(this IEnumerable<T> items)
-        {
-            return string.Join("", items);
-        }
+        public static string JoinAsStrings<T>(this IEnumerable<T> items, string delimiter = "")
+            => string.Join(delimiter, items);
 
         public static string[] SplitByNewline(this string input, bool shouldTrim = false)
         {
             return input
                 .Split(new[] { "\r", "\n", "\r\n" }, StringSplitOptions.None)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => shouldTrim ? s.Trim() : s)
+                .ToArray();
+        }
+
+        public static string[] SplitByParagraph(this string input, bool shouldTrim = false)
+        {
+            return input
+                .Split(new[] { "\r\r", "\n\n", "\r\n\r\n" }, StringSplitOptions.None)
                 .Where(s => !string.IsNullOrWhiteSpace(s))
                 .Select(s => shouldTrim ? s.Trim() : s)
                 .ToArray();
@@ -142,7 +150,7 @@ namespace AdventOfCode.Solutions
 
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> values, int subcount)
         {
-            foreach(var combination in Combinations(values, subcount))
+            foreach (var combination in Combinations(values, subcount))
             {
                 var perms = Permutations(combination);
                 foreach (int i in Enumerable.Range(0, perms.Count())) yield return perms.ElementAt(i);
@@ -193,6 +201,9 @@ namespace AdventOfCode.Solutions
             }
         }
 
+        public static string[] SplitAtIndex(this string input, int index)
+            => new string[] { input.Substring(0, index), input.Substring(index) };
+
         /// <summary>
         /// Rotates an IEnumarable by the requested amount
         /// </summary>
@@ -202,7 +213,7 @@ namespace AdventOfCode.Solutions
         /// <returns></returns>
         public static IEnumerable<T> Rotate<T>(this IEnumerable<T> array, int rotations)
         {
-            for(int i = 0; i < array.Count(); i++)
+            for (int i = 0; i < array.Count(); i++)
             {
                 yield return i + rotations >= 0 ? array.ElementAt((i + rotations) % array.Count()) : array.ElementAt((i + rotations) + array.Count());
             }
@@ -222,11 +233,15 @@ namespace AdventOfCode.Solutions
             rest = list.Skip(2).ToList();
         }
 
-        public static (int, int) Add(this (int x, int y) a, (int x, int y) b) => (a.x + b.x, a.y + b.y);
+        public static (int, int) Add(this (int x, int y) a, (int x, int y) b)
+            => (a.x + b.x, a.y + b.y);
+
+        public static (int, int, int) Add(this (int x, int y, int z) a, (int x, int y, int z) b)
+            => (a.x + b.x, a.y + b.y, a.z + b.z);
 
         public static IEnumerable<T> IntersectAll<T>(this IEnumerable<IEnumerable<T>> input)
             => input.Aggregate(input.First(), (intersector, next) => intersector.Intersect(next));
-        
+
         //https://stackoverflow.com/questions/2641326/finding-all-positions-of-substring-in-a-larger-string-in-c-sharp
         public static IEnumerable<int> AllIndexesOf(this string str, string value)
         {
@@ -238,6 +253,44 @@ namespace AdventOfCode.Solutions
                 if (index == -1) break;
                 yield return index;
             }
+        }
+
+        public static int ToInt(this BitArray bitArray)
+        {
+            int value = 0;
+
+            for (int i = 0; i < bitArray.Count; i++)
+            {
+                if (bitArray[i])
+                    value += Convert.ToInt32(Math.Pow(2, i));
+            }
+
+            return value;
+        }
+
+        public static long ToLong(this BitArray bitArray)
+        {
+            long value = 0;
+
+            for (int i = 0; i < bitArray.Count; i++)
+            {
+                if (bitArray[i])
+                    value += Convert.ToInt64(Math.Pow(2, i));
+            }
+
+            return value;
+        }
+
+        public static int IndexOfClosingParenthesis(string expression, int index)
+        {
+            int parens = 0;
+            do
+            {
+                var c = expression[index++];
+                if (c == '(') parens++;
+                if (c == ')') parens--;
+            } while (parens > 0);
+            return index;
         }
     }
 }

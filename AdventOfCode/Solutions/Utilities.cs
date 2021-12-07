@@ -109,6 +109,15 @@ namespace AdventOfCode.Solutions
                 .ToArray();
         }
 
+        public static string[] SplitByParagraph(this string input, bool shouldTrim = false)
+        {
+            return input
+                .Split(new[] { "\r\r", "\n\n", "\r\n\r\n" }, StringSplitOptions.None)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => shouldTrim ? s.Trim() : s)
+                .ToArray();
+        }
+
         public static string Reverse(this string str)
         {
             char[] arr = str.ToCharArray();

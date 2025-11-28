@@ -14,20 +14,24 @@ public abstract class SolutionBase
 {
     public int Day { get; }
     public int Year { get; }
-    public string Title { get; }
     public bool Debug { get; set; }
+
+    public string Title => LoadTitle(Debug);
     public string Input => LoadInput(Debug);
     public string DebugInput => LoadInput(true);
 
     public SolutionResult Part1 => Solve(1);
     public SolutionResult Part2 => Solve(2);
 
+    private readonly string _titleOverride;
+
     private protected SolutionBase(int day, int year, string title, bool useDebugInput = false)
     {
         Day = day;
         Year = year;
-        Title = title;
         Debug = useDebugInput;
+
+        _titleOverride = title;
     }
 
     public IEnumerable<SolutionResult> SolveAll()
@@ -81,10 +85,46 @@ public abstract class SolutionBase
         }
     }
 
+    private string InputsDirectory => $"./inputs/y{Year}/d{Day:D2}";
+
+    string LoadTitle(bool debug = false)
+    {
+        if (!string.IsNullOrEmpty(_titleOverride))
+        {
+            return _titleOverride;
+        }
+
+        var titleFilePath = $"{InputsDirectory}/title";
+        var file = new FileInfo(titleFilePath);
+        if (File.Exists(titleFilePath) && file.Length > 0)
+        {
+            return File.ReadAllText(titleFilePath);
+        }
+
+        if (debug) return "";
+
+        try
+        {
+            var title = InputService.FetchTitle(Year, Day).Result;
+            file.Directory?.Create();
+            File.WriteAllText(titleFilePath, title);
+            return title;
+        }
+        catch (InvalidOperationException)
+        {
+            var colour = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"Day {Day}: Cannot fetch puzzle input before given date (Eastern Standard Time).");
+            Console.ForegroundColor = colour;
+        }
+
+        return "";
+    }
+
     string LoadInput(bool debug = false)
     {
         var inputFilepath =
-            $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}";
+            $"{InputsDirectory}/{(debug ? "debug" : "input")}";
 
         if (File.Exists(inputFilepath) && new FileInfo(inputFilepath).Length > 0)
         {
@@ -137,7 +177,7 @@ public abstract class SolutionBase
         + $"{ResultToString(2, Part2)}";
 
     string ResultToString(int part, SolutionResult result) =>
-        $"  - Part{part} => " + (string.IsNullOrEmpty(result.Answer) 
+        $"  - Part{part} => " + (string.IsNullOrEmpty(result.Answer)
             ? "Unsolved"
             : $"{result.Answer} ({result.Time.TotalMilliseconds}ms)");
 

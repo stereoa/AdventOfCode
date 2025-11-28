@@ -44,7 +44,7 @@ public abstract class SolutionBase
         throw new InvalidOperationException("Invalid part param supplied.");
     }
 
-    SolutionResult Solve(Func<string> SolverFunction)
+    SolutionResult Solve(Func<string?> SolverFunction)
     {
         if (Debug)
         {
@@ -141,6 +141,6 @@ public abstract class SolutionBase
             ? "Unsolved"
             : $"{result.Answer} ({result.Time.TotalMilliseconds}ms)");
 
-    protected abstract string SolvePartOne();
-    protected abstract string SolvePartTwo();
+    protected abstract string? SolvePartOne();
+    protected abstract string? SolvePartTwo();
 }

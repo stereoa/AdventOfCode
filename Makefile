@@ -4,7 +4,7 @@ define newline
 endef
 
 YEAR ?= $(shell date +%Y)
-DAYS ?= $(shell seq 1 25)
+DAYS ?= $(shell seq 1 $(shell if [ $(YEAR) -ge 2025 ]; then echo 12; else echo 25; fi))
 
 TEMPLATE := $(subst <YEAR>,$(YEAR),$(subst $(newline),\n,$(file < ./templates/solution.cs.template)))
 DIRECTORY := "$(shell pwd)/AdventOfCode.Solutions/Year$(YEAR)"

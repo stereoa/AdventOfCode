@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AdventOfCode.Models;
 using System.Linq;
 using AdventOfCode.Solutions;
+using AdventOfCode.Solutions.Utils;
 
 namespace AdventOfCode.Tests
 {

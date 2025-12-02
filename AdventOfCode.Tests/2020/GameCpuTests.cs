@@ -31,7 +31,7 @@ namespace AdventOfCode.Tests
                 _cpu.Execute();
                 Assert.Fail();
             }
-            catch (InfiniteLoopException ex)
+            catch (InfiniteLoopException)
             {
                 Assert.AreEqual(5, _cpu.Accumulator);
             }

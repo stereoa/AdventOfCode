@@ -1,5 +1,6 @@
 ﻿using AdventOfCode.Models;
 using AdventOfCode.Solutions;
+using AdventOfCode.Solutions.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

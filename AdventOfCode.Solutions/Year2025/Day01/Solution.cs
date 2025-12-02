@@ -11,11 +11,14 @@ class Solution : SolutionBase
         var directions = Input.SplitByNewline();
         var dial = new Dial();
         dial.ProcessDirections(directions);
-        return dial.ZeroTriggerCount.ToString();
+        return dial.ZeroStopCount.ToString();
     }
 
     protected override string? SolvePartTwo()
     {
-        return null;
+        var directions = Input.SplitByNewline();
+        var dial = new Dial();
+        dial.ProcessDirections(directions);
+        return dial.ZeroTotalCount.ToString();
     }
 }

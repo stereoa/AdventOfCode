@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Models.Passports;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Models

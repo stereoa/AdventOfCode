@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventOfCode.Models
+﻿namespace AdventOfCode.Models
 {
     public class SubmarineInstruction
     {

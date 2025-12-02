@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AdventOfCode.AdventOfCode.Solutions.Models
+﻿namespace AdventOfCode.AdventOfCode.Solutions.Models
 {
     public class Dial
     {

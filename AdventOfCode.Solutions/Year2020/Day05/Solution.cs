@@ -1,6 +1,4 @@
 using AdventOfCode.Solutions;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AdventOfCode.AdventOfCode.Solutions.Year2020.Day05
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventOfCode.AdventOfCode.Solutions.Year2020.Day05
+﻿namespace AdventOfCode.AdventOfCode.Solutions.Year2020.Day05
 {
     internal class BoardingPass
     {

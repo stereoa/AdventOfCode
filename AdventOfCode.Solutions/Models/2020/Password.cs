@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace AdventOfCode.Models
+﻿namespace AdventOfCode.Models
 {
     public class Password
     {

@@ -1,8 +1,4 @@
-﻿using AdventOfCode.Solutions;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode.Solutions.Year2020
+﻿namespace AdventOfCode.Solutions.Year2020
 {
     public class SurveyGroup
     {

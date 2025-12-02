@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace AdventOfCode.Models.Passports
+﻿namespace AdventOfCode.Models.Passports
 {
     internal class EyeColorField : PassportField
     {

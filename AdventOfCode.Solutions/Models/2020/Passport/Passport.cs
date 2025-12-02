@@ -1,6 +1,4 @@
 ﻿using AdventOfCode.Models.Passports;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AdventOfCode.Models
 {

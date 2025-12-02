@@ -1,8 +1,4 @@
-﻿using AdventOfCode.Solutions;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode.Models
+﻿namespace AdventOfCode.Models
 {
     public class XmasEncryption
     {

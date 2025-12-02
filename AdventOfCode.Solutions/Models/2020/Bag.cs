@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AdventOfCode.Solutions.Year2020
+﻿namespace AdventOfCode.Solutions.Year2020
 {
     public class Bag
     {

@@ -1,12 +1,7 @@
 ﻿using AdventOfCode.Models;
-using AdventOfCode.Solutions;
 using AdventOfCode.Solutions.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode.Tests
 {

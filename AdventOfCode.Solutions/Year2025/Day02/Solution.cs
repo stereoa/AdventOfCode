@@ -1,3 +1,5 @@
+using AdventOfCode.AdventOfCode.Solutions.Models;
+
 namespace AdventOfCode.Solutions.Year2025.Day02;
 
 class Solution : SolutionBase
@@ -6,7 +8,11 @@ class Solution : SolutionBase
 
     protected override string? SolvePartOne()
     {
-        return null;
+        var ranges = Input.Split(",");
+        var validator = new IdValidator();
+        var invalidIds = validator.FindInvalidIds(ranges);
+        var sum = invalidIds.Sum();
+        return sum.ToString();
     }
 
     protected override string? SolvePartTwo()

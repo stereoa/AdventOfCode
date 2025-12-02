@@ -10,13 +10,17 @@ class Solution : SolutionBase
     {
         var ranges = Input.Split(",");
         var validator = new IdValidator();
-        var invalidIds = validator.FindInvalidIds(ranges);
+        var invalidIds = validator.FindInvalidIds(ranges).ToList();
         var sum = invalidIds.Sum();
         return sum.ToString();
     }
 
     protected override string? SolvePartTwo()
     {
-        return null;
+        var ranges = Input.Split(",");
+        var validator = new IdValidator();
+        var invalidIds = validator.FindInvalidIds(ranges, true).ToList();
+        var sum = invalidIds.Sum();
+        return sum.ToString();
     }
 }

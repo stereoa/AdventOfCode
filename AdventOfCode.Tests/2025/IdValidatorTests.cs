@@ -15,6 +15,9 @@ namespace AdventOfCode.Tests
                                "1698522-1698528," +
                                "446443-446449," +
                                "38593856-38593862";
+        private string InputAddon = "565653-565659," +
+                                    "824824821-824824827," +
+                                    "2121212118-2121212124";
 
         [TestMethod]
         public void Test_DayTwoPartOneExample()
@@ -28,7 +31,12 @@ namespace AdventOfCode.Tests
 
         [TestMethod]
         public void Test_DayTwoPartTwoExample()
-        { 
+        {
+            var ranges = (Input + InputAddon).Split(',');
+            var validator = new IdValidator();
+            var invalidIds = validator.FindInvalidIds(ranges, true);
+            var sum = invalidIds.Sum();
+            Assert.AreEqual(4174379265, sum);
         }
     }
 }

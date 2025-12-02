@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Solutions;
+using AdventOfCode.Solutions.Utils;
 using AdventOfCode.Solutions.Year2020;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

@@ -125,6 +125,7 @@ public abstract class SolutionBase
     {
         var inputFilepath =
             $"{InputsDirectory}/{(debug ? "debug" : "input")}";
+        var file = new FileInfo(inputFilepath);
 
         if (File.Exists(inputFilepath) && new FileInfo(inputFilepath).Length > 0)
         {
@@ -136,6 +137,7 @@ public abstract class SolutionBase
         try
         {
             var input = InputService.FetchInput(Year, Day).GetAwaiter().GetResult();
+            file.Directory?.Create();
             File.WriteAllText(inputFilepath, input);
             return input;
         }

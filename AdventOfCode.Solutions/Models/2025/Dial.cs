@@ -7,42 +7,38 @@ namespace AdventOfCode.AdventOfCode.Solutions.Models
     public class Dial
     {
         public int CurrentPosition { get; private set; } = 50;
-        public int ZeroTriggerCount { get; private set; }
+        public int ZeroStopCount { get; private set; }
+        public int ZeroPassCount { get; private set; }
+        public int ZeroTotalCount => ZeroStopCount + ZeroPassCount;
+
+        public int PreviousPosition { get; private set; }
 
         public void ProcessDirections(string[] directions)
         {
             foreach (var direction in directions)
             {
                 if (string.IsNullOrWhiteSpace(direction)) continue;
-                var turnDirection = direction[0];
-                if (!int.TryParse(direction[1..].Trim(), out int turnAmount))
+
+                char turnDirection = direction[0];
+                int amount = int.Parse(direction[1..]);
+
+                int delta = turnDirection == 'L' ? -1 : 1;
+
+                for (int i = 0; i < amount; i++)
                 {
-                    throw new ArgumentException($"Invalid turn amount in direction: {direction}");
+                    CurrentPosition += delta;
+
+                    if (CurrentPosition < 0)
+                        CurrentPosition += 100;
+                    else if (CurrentPosition >= 100)
+                        CurrentPosition -= 100;
+
+                    if (CurrentPosition == 0)
+                        ZeroPassCount++;
                 }
-                if (turnDirection == 'L')
-                {
-                    CurrentPosition -= turnAmount;
-                }
-                else if (turnDirection == 'R')
-                {
-                    CurrentPosition += turnAmount;
-                }
-                else
-                {
-                    throw new ArgumentException($"Invalid turn direction in direction: {direction}");
-                }
-                while (CurrentPosition < 0)
-                {
-                    CurrentPosition += 100;
-                }
-                while (CurrentPosition >= 100)
-                {
-                    CurrentPosition -= 100;
-                }
+
                 if (CurrentPosition == 0)
-                {
-                    ZeroTriggerCount++;
-                }
+                    ZeroStopCount++;
             }
         }
     }

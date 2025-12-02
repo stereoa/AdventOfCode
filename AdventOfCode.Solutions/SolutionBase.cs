@@ -135,7 +135,7 @@ public abstract class SolutionBase
 
         try
         {
-            var input = InputService.FetchInput(Year, Day).Result;
+            var input = InputService.FetchInput(Year, Day).GetAwaiter().GetResult();
             File.WriteAllText(inputFilepath, input);
             return input;
         }

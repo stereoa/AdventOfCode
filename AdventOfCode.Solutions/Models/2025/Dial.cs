@@ -13,28 +13,39 @@
         {
             foreach (var direction in directions)
             {
-                if (string.IsNullOrWhiteSpace(direction)) continue;
+                if (string.IsNullOrWhiteSpace(direction))
+                {
+                    continue;
+                }
 
-                char turnDirection = direction[0];
-                int amount = int.Parse(direction[1..]);
+                var turnDirection = direction[0];
+                var amount = int.Parse(direction[1..]);
 
-                int delta = turnDirection == 'L' ? -1 : 1;
+                var delta = turnDirection == 'L' ? -1 : 1;
 
-                for (int i = 0; i < amount; i++)
+                for (var i = 0; i < amount; i++)
                 {
                     CurrentPosition += delta;
 
                     if (CurrentPosition < 0)
+                    {
                         CurrentPosition += 100;
+                    }
                     else if (CurrentPosition >= 100)
+                    {
                         CurrentPosition -= 100;
+                    }
 
-                    if (CurrentPosition == 0)
+                    if (CurrentPosition == 0 && i != amount - 1)
+                    {
                         ZeroPassCount++;
+                    }
                 }
 
                 if (CurrentPosition == 0)
+                {
                     ZeroStopCount++;
+                }
             }
         }
     }

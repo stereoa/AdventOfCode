@@ -4,19 +4,17 @@ namespace AdventOfCode.AdventOfCode.Solutions.Models
 {
     public class IdValidator
     {
-        private bool IncludeAll { get; set; }
-
         public IEnumerable<long> FindInvalidIds(string[] ranges, bool includeAll = false)
         {
-            IncludeAll = includeAll;
             foreach (var range in ranges)
             {
-                var split = range.Split("-");
-                var start = long.Parse(split[0]);
-                var end = long.Parse(split[1]);
-                for (var id = start; id <= end; id++)
+                var parts = range.Split('-');
+                var start = long.Parse(parts[0]);
+                var end = long.Parse(parts[1]);
+
+                for (long id = start; id <= end; id++)
                 {
-                    if (!IsValidId(id))
+                    if (IsRepeatedSequence(id, includeAll))
                     {
                         yield return id;
                     }
@@ -24,46 +22,44 @@ namespace AdventOfCode.AdventOfCode.Solutions.Models
             }
         }
 
-        private bool IsValidId(long id)
+        private bool IsRepeatedSequence(long number, bool includeAll = false)
         {
-            var idStr = id.ToString();
-            var isOddLength = idStr.Length % 2 != 0;
+            var s = number.ToString();
+            var len = s.Length;
 
-            if (isOddLength && !IncludeAll)
+            for (var chunkLen = 1; chunkLen <= len / 2; chunkLen++)
             {
-                return true;
-            }
-
-            for (var i = 2; i <= idStr.Length; i++)
-            {
-                if (idStr.Length % i != 0)
+                if (len % chunkLen != 0)
                 {
                     continue;
                 }
 
-                var parts = SplitIntoParts(idStr, i);
-                var isValid = new HashSet<string>(parts).Count != 1;
-                if (!isValid)
+                var repeatCount = len / chunkLen;
+                if (!includeAll && repeatCount != 2)
                 {
-                    return false;
+                    continue;
+                }
+
+                var chunk = s.Substring(0, chunkLen);
+                var valid = true;
+
+                for (int i = 1; i < repeatCount; i++)
+                {
+                    if (s.Substring(i * chunkLen, chunkLen) != chunk)
+                    {
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if (valid)
+                {
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
 
-        private List<string> SplitIntoParts(string str, int parts)
-        {
-            int partSize = str.Length / parts;
-            var result = new List<string>(parts);
-
-            for (int i = 0; i < parts; i++)
-            {
-                int start = i * partSize;
-                result.Add(str.Substring(start, partSize));
-            }
-
-            return result;
-        }
     }
 }

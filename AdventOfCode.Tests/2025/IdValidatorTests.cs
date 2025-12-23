@@ -15,7 +15,7 @@ namespace AdventOfCode.Tests
                                "1698522-1698528," +
                                "446443-446449," +
                                "38593856-38593862";
-        private string InputAddon = "565653-565659," +
+        private string InputAddon = ",565653-565659," +
                                     "824824821-824824827," +
                                     "2121212118-2121212124";
 
